@@ -1,6 +1,7 @@
 package com.matheusbloize.dio_java_spring_design_patterns.specifications;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.data.jpa.domain.Specification;
@@ -46,6 +47,19 @@ public class ProductSpecification {
                 return null;
             }
             return root.join("user").get("id").in(userId);
+        };
+    }
+
+    public static Specification<Product> offerExpiringSoon(boolean offersExpiring) {
+        return (root, query, builder) -> {
+            if (ObjectUtils.isEmpty(offersExpiring)) {
+                return null;
+            }
+            if (!offersExpiring) {
+                return builder.conjunction();
+            }
+            LocalDateTime date = LocalDateTime.now().plusDays(7);
+            return builder.lessThan(root.get("offerExpirationDate"), date);
         };
     }
 }
