@@ -23,7 +23,9 @@ public class ProductQueryFilter {
         if (!sortOpt.isPresent()) {
             setSort("asc");
         }
-        return sortByCreationDate(sort);
+        return sortByCreationDate(sort)
+                .and(priceGreaterThanOrEqualTo(priceGte))
+                .and(priceLessThanOrEqualTo(priceLte));
     }
 
     public UUID getUserId() {
