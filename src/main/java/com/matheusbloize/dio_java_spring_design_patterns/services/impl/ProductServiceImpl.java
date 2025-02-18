@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.matheusbloize.dio_java_spring_design_patterns.models.Product;
@@ -27,6 +28,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> listAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public List<Product> listAll(Specification<Product> sortByCreationDate) {
+        return productRepository.findAll(sortByCreationDate);
     }
 
     @Override

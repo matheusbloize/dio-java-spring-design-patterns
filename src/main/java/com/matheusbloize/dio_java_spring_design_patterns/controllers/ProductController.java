@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.matheusbloize.dio_java_spring_design_patterns.dtos.ProductDto;
@@ -22,6 +23,7 @@ import com.matheusbloize.dio_java_spring_design_patterns.models.Product;
 import com.matheusbloize.dio_java_spring_design_patterns.models.User;
 import com.matheusbloize.dio_java_spring_design_patterns.services.ProductService;
 import com.matheusbloize.dio_java_spring_design_patterns.services.UserService;
+import com.matheusbloize.dio_java_spring_design_patterns.specifications.ProductSpecification;
 
 import jakarta.validation.Valid;
 
@@ -37,8 +39,14 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> listAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(productService.listAll());
+    public ResponseEntity<List<Product>> listAll(@RequestParam(required = false) String sort) {
+        Optional<String> sortOpt = Optional.ofNullable(sort);
+        if (!sortOpt.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.listAll());
+        } else {
+            boolean sortStyle = sort.equalsIgnoreCase("asc") ? true : false;
+            return ResponseEntity.status(HttpStatus.OK).body(productService.listAll(ProductSpecification.sortByCreationDate(sortStyle)));
+        }
     }
 
     @GetMapping("/{id}")

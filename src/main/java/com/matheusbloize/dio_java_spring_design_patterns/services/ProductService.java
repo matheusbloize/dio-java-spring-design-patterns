@@ -5,11 +5,15 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.data.jpa.domain.Specification;
+
 import com.matheusbloize.dio_java_spring_design_patterns.models.Product;
 
 // Strategy Pattern
 public interface ProductService {
     List<Product> listAll();
+
+    List<Product> listAll(Specification<Product> sortByCreationDate);
 
     Optional<Product> findById(UUID id);
 
@@ -20,4 +24,5 @@ public interface ProductService {
     Product save(Product product);
 
     void delete(Product product);
+
 }
