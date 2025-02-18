@@ -1,6 +1,7 @@
 package com.matheusbloize.dio_java_spring_design_patterns.specifications;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.ObjectUtils;
@@ -36,6 +37,15 @@ public class ProductSpecification {
                 return null;
             }
             return builder.greaterThanOrEqualTo(root.get("price"), priceGte);
+        };
+    }
+
+    public static Specification<Product> userProducts(UUID userId) {
+        return (root, query, builder) -> {
+            if (ObjectUtils.isEmpty(userId)) {
+                return null;
+            }
+            return root.join("user").get("id").in(userId);
         };
     }
 }

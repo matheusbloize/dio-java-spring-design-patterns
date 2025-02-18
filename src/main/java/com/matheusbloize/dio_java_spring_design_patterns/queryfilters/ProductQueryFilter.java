@@ -25,7 +25,8 @@ public class ProductQueryFilter {
         }
         return sortByCreationDate(sort)
                 .and(priceGreaterThanOrEqualTo(priceGte))
-                .and(priceLessThanOrEqualTo(priceLte));
+                .and(priceLessThanOrEqualTo(priceLte))
+                .and(userProducts(userId));
     }
 
     public UUID getUserId() {
