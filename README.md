@@ -4,7 +4,7 @@ CRUD REST API proposed as a challenge by DIO to practice design patterns such as
 
 ## Project Improvements
 - Use of DTOs
-- Creation of filters by specifications
+- Creating filters by specifications
 - Use of table relationships
 
 ## Technologies
