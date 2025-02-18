@@ -14,7 +14,8 @@ import com.matheusbloize.dio_java_spring_design_patterns.models.Product;
 public class ProductQueryFilter {
     private String sort;
     private UUID userId;
-    private BigDecimal price;
+    private BigDecimal priceGte;
+    private BigDecimal priceLte;
     private LocalDateTime offerExpirationDate;
 
     public Specification<Product> toSpecification() {
@@ -33,14 +34,6 @@ public class ProductQueryFilter {
         this.userId = userId;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public LocalDateTime getOfferExpirationDate() {
         return offerExpirationDate;
     }
@@ -55,6 +48,22 @@ public class ProductQueryFilter {
 
     public void setSort(String sort) {
         this.sort = sort;
+    }
+
+    public BigDecimal getPriceGte() {
+        return priceGte;
+    }
+
+    public void setPriceGte(BigDecimal priceGte) {
+        this.priceGte = priceGte;
+    }
+
+    public BigDecimal getPriceLte() {
+        return priceLte;
+    }
+
+    public void setPriceLte(BigDecimal priceLte) {
+        this.priceLte = priceLte;
     }
 
 }
