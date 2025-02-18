@@ -50,7 +50,7 @@ public class ProductSpecification {
         };
     }
 
-    public static Specification<Product> offerExpiringSoon(boolean offersExpiring) {
+    public static Specification<Product> offersExpiringSoon(boolean offersExpiring) {
         return (root, query, builder) -> {
             if (ObjectUtils.isEmpty(offersExpiring)) {
                 return null;

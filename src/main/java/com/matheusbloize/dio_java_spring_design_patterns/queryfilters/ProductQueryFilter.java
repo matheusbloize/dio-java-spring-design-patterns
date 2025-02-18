@@ -26,7 +26,7 @@ public class ProductQueryFilter {
                 .and(priceGreaterThanOrEqualTo(priceGte))
                 .and(priceLessThanOrEqualTo(priceLte))
                 .and(userProducts(userId))
-                .and(offerExpiringSoon(offersExpiring));
+                .and(offersExpiringSoon(offersExpiring));
     }
 
     public UUID getUserId() {
