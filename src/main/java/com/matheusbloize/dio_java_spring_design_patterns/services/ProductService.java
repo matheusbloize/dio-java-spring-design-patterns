@@ -13,7 +13,7 @@ import com.matheusbloize.dio_java_spring_design_patterns.models.Product;
 public interface ProductService {
     List<Product> listAll();
 
-    List<Product> listAll(Specification<Product> sortByCreationDate);
+    List<Product> listAll(Specification<Product> filter);
 
     Optional<Product> findById(UUID id);
 

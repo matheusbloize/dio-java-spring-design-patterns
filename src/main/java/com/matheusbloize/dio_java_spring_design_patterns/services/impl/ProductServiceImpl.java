@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> listAll(Specification<Product> sortByCreationDate) {
-        return productRepository.findAll(sortByCreationDate);
+    public List<Product> listAll(Specification<Product> filter) {
+        return productRepository.findAll(filter);
     }
 
     @Override
